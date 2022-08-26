@@ -6,7 +6,8 @@ namespace regras_encadeadas.Controllers;
 [Route("[controller]")]
 public class EmprestimosController : ControllerBase
 {
-    public ResultadoSolicitacaoEmprestimo Post(SolicitacaoEmprestimo model)
+    [HttpPost]
+    public ResultadoSolicitacaoEmprestimo Post([FromBody]SolicitacaoEmprestimo model)
     {
         var regraIdade = new RegraIdade(model);
         var regraValorEmprestimo = new RegraValorEmprestimo(model, regraIdade);

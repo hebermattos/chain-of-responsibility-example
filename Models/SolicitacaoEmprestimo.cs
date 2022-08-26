@@ -2,9 +2,8 @@ namespace regras_encadeadas.Controllers
 {
     public class SolicitacaoEmprestimo
     {
-        internal int Valor;
-
-        public int Idade { get; internal set; }
-        public int Salario { get; internal set; }
+        public int Valor { get; set; }
+        public int Idade { get; set; }
+        public int Salario { get; set; }
     }
 }
