@@ -45,4 +45,4 @@ Para adicionar uma nova regra:
     var resultado = regraSalario.VerificarRegras();
 ```
 
-o importante na Chain of Responsibility é encadear as objetos na ordem adequada, e sempre comecar a execução com o úlitmo, que eventualmente vai chamar objetos encadeados previamente.
+O importante na Chain of Responsibility é encadear as objetos na ordem adequada, e sempre comecar a execução com o úlitmo, que eventualmente vai chamar objetos encadeados previamente.
