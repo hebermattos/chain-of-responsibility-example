@@ -23,7 +23,7 @@ para adicionar uma nova regra:
     {
         private int _idade;
 
-        public RegraIdadeBaixa(SolicitacaoEmprestimo solicitacaoEmprestimo, int idade) : base(solicitacaoEmprestimo, null)
+        public RegraIdadeBaixa(SolicitacaoEmprestimo solicitacaoEmprestimo, RegraEmprestimo proximaRegra, int idade) : base(solicitacaoEmprestimo, proximaRegra)
         {
             _idade = idade;
         }
