@@ -9,9 +9,9 @@ public class EmprestimosController : ControllerBase
     [HttpPost]
     public ResultadoSolicitacaoEmprestimo Post([FromBody]SolicitacaoEmprestimo model)
     {
-        var regraIdade = new RegraIdade(model);
-        var regraValorEmprestimo = new RegraValorEmprestimo(model, regraIdade);
-        var regraSalario = new RegraSalario(model, regraValorEmprestimo);
+        var regraIdade = new RegraIdade(model, 75);
+        var regraValorEmprestimo = new RegraValorEmprestimo(model, regraIdade, 5);
+        var regraSalario = new RegraSalario(model, regraValorEmprestimo, 1000);
 
         var resultado = regraSalario.VerificarRegras();
 

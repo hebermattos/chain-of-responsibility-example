@@ -2,15 +2,18 @@ namespace regras_encadeadas.Controllers
 {
     internal class RegraValorEmprestimo : RegraEmprestimo
     {
-        public RegraValorEmprestimo(SolicitacaoEmprestimo solicitacaoEmprestimo, RegraEmprestimo proximaRegra) : base(solicitacaoEmprestimo, proximaRegra)
+        private int _multiplicador;
+
+        public RegraValorEmprestimo(SolicitacaoEmprestimo solicitacaoEmprestimo, RegraEmprestimo proximaRegra, int multiplicador) : base(solicitacaoEmprestimo, proximaRegra)
         {
+            _multiplicador = multiplicador;
         }
 
         public override string NomeRegra => "Valor do Emprestimo";
 
         public override bool VerificarRegra()
         {
-            return SolicitacaoEmprestimo.Valor > 100000;
+            return SolicitacaoEmprestimo.Valor >  SolicitacaoEmprestimo.Salario * _multiplicador;
         }
     }
 }

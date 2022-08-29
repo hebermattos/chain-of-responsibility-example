@@ -2,15 +2,18 @@ namespace regras_encadeadas.Controllers
 {
     public class RegraIdade : RegraEmprestimo
     {
-        public RegraIdade(SolicitacaoEmprestimo solicitacaoEmprestimo) : base(solicitacaoEmprestimo, null)
+        private int _idade;
+
+        public RegraIdade(SolicitacaoEmprestimo solicitacaoEmprestimo, int idade) : base(solicitacaoEmprestimo, null)
         {
+            _idade = idade;
         }
 
         public override string NomeRegra => "Idade";
 
         public override bool VerificarRegra()
         {
-            return SolicitacaoEmprestimo.Idade > 85;
+            return SolicitacaoEmprestimo.Idade > _idade;
 
         }
     }
