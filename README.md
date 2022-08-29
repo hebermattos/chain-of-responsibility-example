@@ -26,6 +26,7 @@ Para adicionar uma nova regra:
         {
             _idade = idade;
         }
+        
         public override string NomeRegra => "Idade baixa";
 
         public override bool VerificarRegra()
