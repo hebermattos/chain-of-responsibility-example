@@ -19,17 +19,20 @@ para adicionar uma nova regra:
 - criar uma classe que herde de RegraEmprestimo:
 
 ```
-    public class RegraParcelas : RegraEmprestimo
+    public class RegraIdadeBaixa : RegraEmprestimo
     {
-        public RegraParcelas(SolicitacaoEmprestimo solicitacaoEmprestimo, RegraEmprestimo? proximaRegra) : base(solicitacaoEmprestimo, proximaRegra)
+        private int _idade;
+
+        public RegraIdadeBaixa(SolicitacaoEmprestimo solicitacaoEmprestimo, int idade) : base(solicitacaoEmprestimo, null)
         {
+            _idade = idade;
         }
 
-        public override string NomeRegra => throw new NotImplementedException();
+        public override string NomeRegra => "Idade baixa";
 
         public override bool VerificarRegra()
         {
-            throw new NotImplementedException();
+            return SolicitacaoEmprestimo.Idade < _idade;
         }
     }
 ```
