@@ -23,7 +23,7 @@ namespace regras_encadeadas.Controllers
                 return new ResultadoSolicitacaoEmprestimo
                 {
                     Aprovado = false,
-                    Regra = NomeRegra
+                    Motivo = NomeRegra
                 };
             }
 
