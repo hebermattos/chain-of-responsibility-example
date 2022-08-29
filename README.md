@@ -1,11 +1,11 @@
 # Modelando regras com Chain of Responsibility e Template Method
 
-solitação de empréstimo:
+Solitação de empréstimo:
 
-regras:
-- idade menor que X
-- salario maior que X
-- valor do empréstimo não pode ser mais que X vezes o salario
+Regras:
+- Idade menor que X
+- Salario maior que X
+- Valor do empréstimo não pode ser mais que X vezes o salario
 
 ```
     var regraIdadeAlta = new RegraIdadeAlta(model, 75);
@@ -15,8 +15,8 @@ regras:
     var resultado = regraSalario.VerificarRegras();
 ```
 
-para adicionar uma nova regra:
-- criar uma classe que herde de RegraEmprestimo:
+Para adicionar uma nova regra:
+- Criar uma classe que herde de RegraEmprestimo:
 ```
     public class RegraIdadeBaixa : RegraEmprestimo
     {
@@ -34,13 +34,13 @@ para adicionar uma nova regra:
         }
     }
 ```
-- adicione ela no fluxo, na parte mais adequada:
+- Adicione ela no fluxo, na parte mais adequada:
 ```
     var regraIdadeAlta = new RegraIdadeAlta(model, 75);
     var regraIdadeBaixa = new RegraIdadeBaixa(model, regraIdadeAlta, 18);
     var regraValorEmprestimo = new RegraValorEmprestimo(model, regraIdadeBaixa, 5);
     var regraSalario = new RegraSalario(model, regraValorEmprestimo, 1000);
-    
+
     var resultado = regraSalario.VerificarRegras();
 ```
 
