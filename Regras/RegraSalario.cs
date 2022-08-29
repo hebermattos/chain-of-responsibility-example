@@ -1,6 +1,6 @@
 namespace regras_encadeadas.Controllers
 {
-    internal class RegraSalario : RegraEmprestimo
+    public class RegraSalario : RegraEmprestimo
     {
         private int _salario;
 

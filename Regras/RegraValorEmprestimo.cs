@@ -1,6 +1,6 @@
 namespace regras_encadeadas.Controllers
 {
-    internal class RegraValorEmprestimo : RegraEmprestimo
+    public class RegraValorEmprestimo : RegraEmprestimo
     {
         private int _multiplicador;
 

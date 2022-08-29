@@ -14,7 +14,6 @@ namespace regras_encadeadas.Controllers
         public override bool VerificarRegra()
         {
             return SolicitacaoEmprestimo.Idade > _idade;
-
         }
     }
 }
