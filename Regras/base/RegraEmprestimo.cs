@@ -8,9 +8,13 @@ namespace regras_encadeadas.Controllers
         public abstract bool VerificarRegra();
         public abstract string NomeRegra { get; }
 
-        public RegraEmprestimo(SolicitacaoEmprestimo solicitacaoEmprestimo, RegraEmprestimo? proximaRegra)
+        public RegraEmprestimo(SolicitacaoEmprestimo solicitacaoEmprestimo)
         {
             SolicitacaoEmprestimo = solicitacaoEmprestimo;
+        }
+
+        public void DefinirProximaRegra(RegraEmprestimo? proximaRegra)
+        {
             ProximaRegra = proximaRegra;
         }
 

@@ -4,7 +4,7 @@ namespace regras_encadeadas.Controllers
     {
         private int _multiplicador;
 
-        public RegraValorEmprestimo(SolicitacaoEmprestimo solicitacaoEmprestimo, RegraEmprestimo proximaRegra, int multiplicador) : base(solicitacaoEmprestimo, proximaRegra)
+        public RegraValorEmprestimo(SolicitacaoEmprestimo solicitacaoEmprestimo, int multiplicador) : base(solicitacaoEmprestimo)
         {
             _multiplicador = multiplicador;
         }

@@ -1,18 +1,26 @@
-# Modelando regras com Chain of Responsibility e Template Method
+# Exemplificando padrões de projeto
+
+## Chain of Responsibility 
 
 Solitação de empréstimo:
 
 Regras:
-- Idade menor que X
+- Idade maior que X
 - Salario maior que X
 - Valor do empréstimo não pode ser mais que X vezes o salario
+- Restrição na Serasa
 
 ```
-    var regraIdadeAlta = new RegraIdadeAlta(model, 75);
-    var regraValorEmprestimo = new RegraValorEmprestimo(model, regraIdadeAlta, 5);
-    var regraSalario = new RegraSalario(model, regraValorEmprestimo, 1000);
+        var regraIdadeAlta = new RegraIdadeAlta(model, 75);
+        var regraValorEmprestimo = new RegraValorEmprestimo(model,  5);
+        var regraSalario = new RegraSalario(model,  1000);
+        var regraSerasa = new RegraSerasa(model, new ProxyProvedorSerasa(new ProvedorSerasa()));
 
-    var resultado = regraSalario.VerificarRegras();
+        regraIdadeAlta.DefinirProximaRegra(regraValorEmprestimo);
+        regraValorEmprestimo.DefinirProximaRegra(regraSalario);        
+        regraSalario.DefinirProximaRegra(regraSerasa);
+
+        var resultado = regraIdadeAlta.VerificarRegras();
 ```
 
 Para adicionar uma nova regra:
@@ -37,12 +45,47 @@ Para adicionar uma nova regra:
 ```
 - Adicione ela no fluxo, na parte mais adequada:
 ```
-    var regraIdadeAlta = new RegraIdadeAlta(model, 75);
-    var regraIdadeBaixa = new RegraIdadeBaixa(model, regraIdadeAlta, 18);
-    var regraValorEmprestimo = new RegraValorEmprestimo(model, regraIdadeBaixa, 5);
-    var regraSalario = new RegraSalario(model, regraValorEmprestimo, 1000);
+        var regraIdadeAlta = new RegraIdadeAlta(model, 75);
+        var regraIdadeBaixa = new RegraIdadeBaixa(model, 18);
+        var regraValorEmprestimo = new RegraValorEmprestimo(model,  5);
+        var regraSalario = new RegraSalario(model,  1000);
+        var regraSerasa = new RegraSerasa(model, new ProxyProvedorSerasa(new ProvedorSerasa()));
 
-    var resultado = regraSalario.VerificarRegras();
+        regraIdadeAlta.DefinirProximaRegra(regraIdadeBaixa);
+        regraIdadeBaixa.DefinirProximaRegra(regraValorEmprestimo);
+        regraValorEmprestimo.DefinirProximaRegra(regraSalario);        
+        regraSalario.DefinirProximaRegra(regraSerasa);
+
+        var resultado = regraIdadeAlta.VerificarRegras();
 ```
 
-O importante na Chain of Responsibility é encadear as objetos na ordem adequada, e sempre comecar a execução com o úlitmo, que eventualmente vai chamar objetos encadeados previamente.
+O importante na Chain of Responsibility é encadear as objetos na ordem adequada, e sempre comecar com o primeiro objeto da cadeia, que eventualmente vai chamar os objetos encadeados previamente.
+
+## Utilizando Observer para notificações
+
+Método "Enviar" executa todas as notificações registradas
+
+```
+        var notificador = new Notificador();
+
+        notificador.Registrar(new NotificacaoEmail());
+        notificador.Registrar(new NotificacaoSms());
+
+        notificador.Enviar();
+```
+
+## Utilizando Proxy para cache no ProvedorSerasa
+
+Criamos uma outra classe para para fazer o cache, não modificando a classe original, podendo substituir pela mesma
+
+```
+        var regraSerasa = new RegraSerasa(model, new ProxyProvedorSerasa(new ProvedorSerasa()));
+```
+
+## Utilizando Strategy para o log
+
+Criamos uma outra classe especializada em salvar os dados, podendo alterar para qualquer implementação do ILogStrategy
+
+```
+        logEmprestimo.Logar(model, resultado, new LogArquivoJson());
+```

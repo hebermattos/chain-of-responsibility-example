@@ -4,7 +4,7 @@ namespace regras_encadeadas.Controllers
     {
         private int _idade;
 
-        public RegraIdadeAlta(SolicitacaoEmprestimo solicitacaoEmprestimo, int idade) : base(solicitacaoEmprestimo, null)
+        public RegraIdadeAlta(SolicitacaoEmprestimo solicitacaoEmprestimo, int idade) : base(solicitacaoEmprestimo)
         {
             _idade = idade;
         }

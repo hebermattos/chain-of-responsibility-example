@@ -4,7 +4,7 @@ namespace regras_encadeadas.Controllers
     {
         private int _salario;
 
-        public RegraSalario(SolicitacaoEmprestimo solicitacaoEmprestimo, RegraEmprestimo proximaRegra, int salario) : base(solicitacaoEmprestimo, proximaRegra)
+        public RegraSalario(SolicitacaoEmprestimo solicitacaoEmprestimo, int salario) : base(solicitacaoEmprestimo)
         {
             _salario = salario;
         }
