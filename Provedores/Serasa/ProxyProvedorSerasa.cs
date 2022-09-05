@@ -1,15 +1,17 @@
 public class ProxyProvedorSerasa : IProvedorSerasa
 {
     private IProvedorSerasa _provedorSerasa;
+    private readonly ICache _cache;
 
-    public ProxyProvedorSerasa(IProvedorSerasa provedorSerasa)
+    public ProxyProvedorSerasa(ICache cache, IProvedorSerasa provedorSerasa)
     {
         _provedorSerasa = provedorSerasa;
+        _cache = cache;
     }
 
     public bool PossuiRestriacao(string cpf)
     {
-        var possuiRestricao = BuscarRestricaoCache(cpf);
+        var possuiRestricao = _cache.BuscarRestricaoCache(cpf);
 
         if (possuiRestricao != null)
         {
@@ -18,18 +20,8 @@ public class ProxyProvedorSerasa : IProvedorSerasa
 
         possuiRestricao = _provedorSerasa.PossuiRestriacao(cpf);
 
-        SalvarRestricaoCache(cpf, possuiRestricao);
+        _cache.SalvarRestricaoCache(cpf, possuiRestricao);
 
         return possuiRestricao.Value;
-    }
-
-    private void SalvarRestricaoCache(string cpf, bool? possuiRestricao)
-    {
-        return;
-    }
-
-    private bool? BuscarRestricaoCache(string cpf)
-    {
-        return false;
     }
 }

@@ -2,7 +2,7 @@ using System.Text.Json;
 
 namespace regras_encadeadas.Controllers
 {
-    internal class LogArquivoJson: ILogStrategy
+    public class LogArquivoJson: ILogStrategy
     {
         public void Salvar(MensagemLog mensagemLog)
         {

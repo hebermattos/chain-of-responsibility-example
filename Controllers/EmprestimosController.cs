@@ -7,17 +7,17 @@ namespace regras_encadeadas.Controllers;
 public class EmprestimosController : ControllerBase
 {
     [HttpPost]
-    public ResultadoSolicitacaoEmprestimo Post([FromBody]SolicitacaoEmprestimo model)
+    public ResultadoSolicitacaoEmprestimo Post([FromBody] SolicitacaoEmprestimo model)
     {
         var regraIdadeAlta = new RegraIdadeAlta(model, 75);
         var regraIdadeBaixa = new RegraIdadeBaixa(model, 18);
-        var regraValorEmprestimo = new RegraValorEmprestimo(model,  5);
-        var regraSalario = new RegraSalario(model,  1000);
-        var regraSerasa = new RegraSerasa(model, new ProxyProvedorSerasa(new ProvedorSerasa()));
+        var regraValorEmprestimo = new RegraValorEmprestimo(model, 5);
+        var regraSalario = new RegraSalario(model, 1000);
+        var regraSerasa = new RegraSerasa(model, new ProxyProvedorSerasa(new Cache(), new ProvedorSerasa()));
 
         regraIdadeAlta.DefinirProximaRegra(regraIdadeBaixa);
         regraIdadeBaixa.DefinirProximaRegra(regraValorEmprestimo);
-        regraValorEmprestimo.DefinirProximaRegra(regraSalario);        
+        regraValorEmprestimo.DefinirProximaRegra(regraSalario);
         regraSalario.DefinirProximaRegra(regraSerasa);
 
         var resultado = regraIdadeAlta.VerificarRegras();
