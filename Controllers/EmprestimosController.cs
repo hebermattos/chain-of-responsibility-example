@@ -13,7 +13,7 @@ public class EmprestimosController : ControllerBase
         var regraIdadeBaixa = new RegraIdadeBaixa(model, 18);
         var regraValorEmprestimo = new RegraValorEmprestimo(model, 5);
         var regraSalario = new RegraSalario(model, 1000);
-        var regraSerasa = new RegraSerasa(model, new ProxyProvedorSerasa(new Cache(), new ProvedorSerasa()));
+        var regraSerasa = new RegraSerasa(model, new ProxyProvedorSerasa(new FakeCache(), new ProvedorSerasa()));
 
         regraIdadeAlta.DefinirProximaRegra(regraIdadeBaixa);
         regraIdadeBaixa.DefinirProximaRegra(regraValorEmprestimo);

@@ -1,4 +1,4 @@
-public class Cache : ICache
+public class FakeCache : ICache
 {
     public void SalvarRestricaoCache(string cpf, bool? possuiRestricao)
     {
