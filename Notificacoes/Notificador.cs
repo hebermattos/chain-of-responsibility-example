@@ -1,6 +1,6 @@
 namespace regras_encadeadas.Controllers
 {
-    internal class Notificador
+    public class Notificador
     {
         private List<INotificacao> _notificacoes;
 
@@ -9,7 +9,7 @@ namespace regras_encadeadas.Controllers
             _notificacoes =  new List<INotificacao>();
         }
 
-        internal void Registrar(INotificacao notificacao)
+        public void Registrar(INotificacao notificacao)
         {
             _notificacoes.Add(notificacao);
         }

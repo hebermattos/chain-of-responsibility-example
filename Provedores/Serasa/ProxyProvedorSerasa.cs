@@ -1,3 +1,5 @@
+namespace regras_encadeadas.Controllers;
+
 public class ProxyProvedorSerasa : IProvedorSerasa
 {
     private IProvedorSerasa _provedorSerasa;

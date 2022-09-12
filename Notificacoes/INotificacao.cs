@@ -1,6 +1,6 @@
 namespace regras_encadeadas.Controllers
 {
-    internal interface INotificacao
+    public interface INotificacao
     {
         void Enviar();
     }
